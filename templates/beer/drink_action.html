@@ -1,4 +1,15 @@
-<form action="/beer/drink/" method="post">
+<h2>Scan your beer</h2>
+
+<form action="/beer/drink/{{user_barcode}}/" method="post">
   {{ form.as_p }}
   <input type="submit" value="Submit" />
 </form>
+
+
+<script type="text/javascript">
+    window.onload = function(){
+          var text_input = document.getElementById ('id_barcode');
+                text_input.focus ();
+                        text_input.select ();
+                                }
+                                      </script>

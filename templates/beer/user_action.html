@@ -1,4 +1,27 @@
-<form action="/beer/drink/" method="post">
+<h2>Scan your ID card</h2>
+
+<form action="/beer/user/" method="post">
   {{ form.as_p }}
   <input type="submit" value="Submit" />
 </form>
+
+<a href="/admin/beer/tab/">Manage tabs</a>
+
+<script type="text/javascript">
+  window.onload = function(){
+    var text_input = document.getElementById ('id_barcode');
+      text_input.focus ();
+        text_input.select ();
+        }
+      </script>
+
+<h2> Latest drinks </h2>
+{% if latest_drinks %}
+    <ul>
+        {% for consumed in latest_drinks %}
+        <li><h3>{{consumed}}</h3></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No drinks have been had!</p>
+{% endif %}
