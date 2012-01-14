@@ -19,6 +19,8 @@ def user(request):
 	if request.method == 'POST':
 		form = ParticipantForm(request.POST)
 		if form.is_valid():
+			if form.cleaned_data.get('barcode') == 'BACK':
+				return HttpResponseRedirect('/beer/mydrink/')
 			return HttpResponseRedirect('/beer/drink/%s/' % form.cleaned_data.get('barcode'))
 	else:
 		form = ParticipantForm()
@@ -28,6 +30,8 @@ def drink(request, user_barcode):
 	if request.method == 'POST':
 		form = DrinkForm(request.POST)
 		if form.is_valid():
+			if form.cleaned_data.get('barcode') == 'BACK':
+				return HttpResponseRedirect('/beer/user/')
 			participant = Participant.objects.get(ident=user_barcode)
 			drink = Drink.objects.get(barcode = form.cleaned_data.get('barcode'))
 			Consumed.objects.create(participant=participant, drink=drink)
@@ -43,6 +47,8 @@ def mydrink(request):
 	if request.method == 'POST':
 		form = MyDrinkForm(request.POST)
 		if form.is_valid():
+			if form.cleaned_data.get('barcode') == 'BACK':
+				return HttpResponseRedirect('/beer/user/')
 			participant = Participant.objects.get(ident=form.cleaned_data.get('barcode'))
 			latest_drinks = Consumed.objects.filter(participant=participant).order_by('-pub_date')
 			return render(request, 'beer/mydrink.html', {'form': form, 'latest_drinks':latest_drinks ,} )

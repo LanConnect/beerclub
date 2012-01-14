@@ -10,8 +10,10 @@ class ParticipantForm(Form):
 		barcode = self.cleaned_data.get('barcode')
 		if Participant.objects.filter(ident=barcode).exists():
 			return barcode
+		elif barcode == 'BACK':
+			return barcode
 		else:
-			raise ValidationError('Unrecognized Barcode')
+			raise ValidationError('Unrecognized Participant (Is your keyboard layout correct?) ')
 
 class DrinkForm(Form):
 	barcode = CharField()
@@ -21,8 +23,10 @@ class DrinkForm(Form):
 		barcode = self.cleaned_data.get('barcode')
 		if Drink.objects.filter(barcode=barcode).exists():
 			return barcode
+		elif barcode == 'BACK':
+			return barcode
 		else:
-			raise ValidationError('Unrecognized Barcode')
+			raise ValidationError('Unrecognized Drink (Is your keyboard layout correct?)')
 
 class MyDrinkForm(Form):
 	barcode = CharField()
@@ -32,7 +36,9 @@ class MyDrinkForm(Form):
 		barcode = self.cleaned_data.get('barcode')
 		if Participant.objects.filter(ident=barcode).exists():
 			return barcode
+		elif barcode == 'BACK':
+			return barcode
 		else:
-			raise ValidationError('Unrecognized Barcode')
+			raise ValidationError('Unrecognized Participant (Is your keyboard layout correct?)')
 
 

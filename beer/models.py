@@ -30,9 +30,9 @@ class Consumed(models.Model):
 	pub_date = models.DateTimeField('date drunk', auto_now_add=True)
 	def __unicode__(self):
 		if self.drink.name[0].lower() in 'aeiou':
-			return self.participant.name + ' drank an ' + self.drink.name
+			return self.participant.name + ' drank an ' + self.drink.name + ' at ' + self.pub_date.__str()
 		else:
-			return self.participant.name + ' drank a ' + self.drink.name
+			return self.participant.name + ' drank a ' + self.drink.name + ' at ' + self.pub_date.__str__()
 
 class Tab(models.Model):
 	balance = models.IntegerField(default=0)
