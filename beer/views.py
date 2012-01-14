@@ -44,8 +44,12 @@ def mydrink(request):
 		form = MyDrinkForm(request.POST)
 		if form.is_valid():
 			participant = Participant.objects.get(ident=form.cleaned_data.get('barcode'))
-			latest_drinks = Consumed.objects.filter(participant=participant).order_by('-pub_date')[:15]
+			latest_drinks = Consumed.objects.filter(participant=participant).order_by('-pub_date')
 			return render(request, 'beer/mydrink.html', {'form': form, 'latest_drinks':latest_drinks ,} )
 	else:
 		form = MyDrinkForm()
 	return render(request, 'beer/mydrink.html', {'form':form,})
+
+def legends(request):
+	#This doesn't need any form processing - just look up how many unique beers everyone has drunk
+	pass

@@ -6,8 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'beerclub.beer.views.home', name='home'),
-    url(r'^beer/$', 'beerclub.beer.views.home', name='home'),
+    url(r'^$', 'beerclub.beer.views.user', name='user'),
     url(r'^beer/user/$', 'beerclub.beer.views.user', name='user'),
     url(r'^beer/mydrink/$', 'beerclub.beer.views.mydrink', name='mydrink'),
 	url(r'^beer/drink/$', 'beerclub.beer.views.drink', name='drink'),
