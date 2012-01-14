@@ -1,0 +1,12 @@
+<h1> ITS BeerClub </h1>
+
+<h2> Latest drinks </h2>
+{% if latest_drinks %}
+    <ul>
+        {% for consumed in latest_drinks %}
+        <li><h3>{{consumed.drink.name}} - {{consumed.participant.name}}</h3></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No drinks have been had!</p>
+{% endif %}
